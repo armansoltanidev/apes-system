@@ -1,8 +1,9 @@
-package af.apesservice.postservice.model;
+package af.apesservice.postservice.model.reqModel;
 
 import af.apesservice.postservice.enums.PostalCodeStatus;
 import af.apesservice.postservice.enums.VerifiedStatus;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostalCodeReqDto {
+
 
     @NotNull(message = "postal code is required")
     private String postalCode;
@@ -68,6 +70,10 @@ public class PostalCodeReqDto {
     @NotNull
     @Enumerated(EnumType.STRING)
     private VerifiedStatus verifiedStatus = VerifiedStatus.UNVERIFIED;
+
+
+    @NotNull
+    private Long cityId;
 
 
     @NotNull

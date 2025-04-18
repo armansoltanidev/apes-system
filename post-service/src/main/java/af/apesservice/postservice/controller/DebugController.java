@@ -1,7 +1,7 @@
 package af.apesservice.postservice.controller;
 
-import af.apesservice.postservice.model.PostalCodeReqDto;
-import af.apesservice.postservice.model.UrbanPostalCode;
+import af.apesservice.postservice.model.reqModel.PostalCodeReqDto;
+import af.apesservice.postservice.model.baseModel.UrbanPostalCode;
 import af.apesservice.postservice.utils.PostalCodeMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

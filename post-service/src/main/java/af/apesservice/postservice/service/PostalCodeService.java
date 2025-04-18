@@ -1,7 +1,7 @@
 package af.apesservice.postservice.service;
 
 
-import af.apesservice.postservice.model.PostalCodeResDto;
+import af.apesservice.postservice.model.resModel.PostalCodeResDto;
 import af.apesservice.postservice.repository.PostalCodeRepository;
 import af.apesservice.postservice.utils.PostalCodeMapper;
 import org.springframework.stereotype.Service;

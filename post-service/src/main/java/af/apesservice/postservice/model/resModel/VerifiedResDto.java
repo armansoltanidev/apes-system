@@ -1,28 +1,29 @@
-package af.apesservice.postservice.model;
+package af.apesservice.postservice.model.resModel;
 
 import java.time.LocalDateTime;
 
 import af.apesservice.postservice.enums.VerifiedStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
-public class VerifiedResponse {
+@NoArgsConstructor
+public class VerifiedResDto {
     private String postalCode;
     private boolean verified;
     private VerifiedStatus verifiedStatus;
     private LocalDateTime requestedAt = LocalDateTime.now();
 
 
-    public VerifiedResponse() {
-    }
-
-    public VerifiedResponse(String postalCode, boolean verified, VerifiedStatus verifiedStatus) {
+    public VerifiedResDto(String postalCode, boolean verified, VerifiedStatus verifiedStatus) {
         this.postalCode = postalCode;
         this.verified = verified;
         this.verifiedStatus = verifiedStatus;
+        this.requestedAt = LocalDateTime.now();
     }
- 
+
 }

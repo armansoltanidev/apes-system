@@ -1,12 +1,17 @@
 package af.apesservice.postservice.controller;
 
 
-import af.apesservice.postservice.model.*;
+import af.apesservice.postservice.model.reqModel.CommercialPostalCodeReqDto;
+import af.apesservice.postservice.model.reqModel.PostalCodeReqDto;
+import af.apesservice.postservice.model.reqModel.PostalCodeVerifyRequest;
+import af.apesservice.postservice.model.resModel.PostalCodeResDto;
+import af.apesservice.postservice.model.resModel.VerifiedResDto;
 import af.apesservice.postservice.service.CommercialPostalCodeService;
 import af.apesservice.postservice.service.PostalCodeService;
 import af.apesservice.postservice.service.UrbanPostalCodeService;
 import af.apesservice.postservice.utils.ApiResponse;
 import af.apesservice.postservice.utils.ResponseUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +22,8 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
+
+@Slf4j
 @RestController
 @RequestMapping("api/v1")
 public class PostalCodeController {
@@ -35,8 +42,10 @@ public class PostalCodeController {
 
 
     @GetMapping("postal-codes")
-    public ResponseEntity<ApiResponse<List<PostalCodeResDto>>> findAllPostalCodes() {
+    public ResponseEntity<ApiResponse<List<PostalCodeResDto>>>
+    findAllPostalCodes() {
         List<PostalCodeResDto> data = postalCodeService.findAllPostalCodes();
+        log.info("Postal Codes Fetched Successfully");
         return ResponseEntity.ok(ResponseUtil.success("Postal Codes Fetched Successfully", data));
     }
 
@@ -73,8 +82,8 @@ public class PostalCodeController {
 
 
     @PostMapping("urban-postal-codes/verify")
-    public ResponseEntity<ApiResponse<VerifiedResponse>> checkVerifiedStatus(@RequestBody PostalCodeVerifyRequest request) {
-        VerifiedResponse data = urbanPostalCodeService.checkVerifiedStatus(request.getPostalCode());
+    public ResponseEntity<ApiResponse<VerifiedResDto>> checkVerifiedStatus(@RequestBody PostalCodeVerifyRequest request) {
+        VerifiedResDto data = urbanPostalCodeService.checkVerifiedStatus(request.getPostalCode());
         return ResponseEntity.ok(ResponseUtil.success("Verification status fetched successfully", data));
     }
     

@@ -1,4 +1,4 @@
-package af.apesservice.postservice.model;
+package af.apesservice.postservice.model.reqModel;
 
 import lombok.Getter;
 import lombok.Setter;

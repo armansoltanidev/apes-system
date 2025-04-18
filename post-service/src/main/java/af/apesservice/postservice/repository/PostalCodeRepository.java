@@ -1,6 +1,6 @@
 package af.apesservice.postservice.repository;
 
-import af.apesservice.postservice.model.PostalCode;
+import af.apesservice.postservice.model.baseModel.PostalCode;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

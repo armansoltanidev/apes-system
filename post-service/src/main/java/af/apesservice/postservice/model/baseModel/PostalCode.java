@@ -1,5 +1,4 @@
-package af.apesservice.postservice.model;
-
+package af.apesservice.postservice.model.baseModel;
 
 import af.apesservice.postservice.enums.PostalCodeStatus;
 import af.apesservice.postservice.enums.VerifiedStatus;
@@ -10,20 +9,21 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type")
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@DiscriminatorColumn(name = "type")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class PostalCode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String postalCode;
 
     private String description;
@@ -37,7 +37,7 @@ public abstract class PostalCode {
 
     private String alleyName;
 
-    private String houseNumber;
+    private Integer houseNumber;
 
     private Integer floorNumber;
 
@@ -45,14 +45,10 @@ public abstract class PostalCode {
 
     private String buildingName;
 
-
     private String additionalInformation;
 
     @Enumerated(EnumType.STRING)
     private PostalCodeStatus status = PostalCodeStatus.ACTIVE;
-
-
-    
 
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
@@ -60,14 +56,17 @@ public abstract class PostalCode {
 
     private boolean isVerified;
 
-
     @Enumerated(EnumType.STRING)
     private VerifiedStatus verifiedStatus = VerifiedStatus.UNVERIFIED;
 
     private LocalDateTime VerifiedAt;
 
-
     private String createdBy;
 
+    private String cityName;
 
+    // Add city relation
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 }

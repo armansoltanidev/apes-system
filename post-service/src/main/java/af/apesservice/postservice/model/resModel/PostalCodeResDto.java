@@ -1,4 +1,4 @@
-package af.apesservice.postservice.model;
+package af.apesservice.postservice.model.resModel;
 
 
 import af.apesservice.postservice.enums.VerifiedStatus;

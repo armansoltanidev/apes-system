@@ -6,6 +6,7 @@ import af.apesservice.postservice.utils.ResponseUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -47,5 +48,22 @@ public class GlobalExceptionHandler {
         ApiResponse<Object> errorResponse = ResponseUtil.error("An unexpected error occurred: " + ex.getMessage(), 
                 HttpStatus.INTERNAL_SERVER_ERROR.value());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiResponse<Object>> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+        ApiResponse<Object> errorResponse = ResponseUtil.error("A record with this unique identifier already exists",
+                HttpStatus.CONFLICT.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+
+
+        
+    }
+
+
+    @ExceptionHandler(CityIdNotFoundExeption.class)
+    public ResponseEntity<ApiResponse<Object>> handleCityIdNotFoundException(CityIdNotFoundExeption ex) {
+        ApiResponse<Object> errorResponse = ResponseUtil.error(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }

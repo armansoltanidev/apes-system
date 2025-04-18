@@ -1,15 +1,13 @@
 package af.apesservice.postservice.utils;
 
-import af.apesservice.postservice.model.PostalCode;
-import af.apesservice.postservice.model.PostalCodeReqDto;
-import af.apesservice.postservice.model.PostalCodeResDto;
-import af.apesservice.postservice.model.UrbanPostalCode;
-import af.apesservice.postservice.model.CommercialPostalCode;
-import af.apesservice.postservice.model.CommercialPostalCodeReqDto;
+import af.apesservice.postservice.model.baseModel.PostalCode;
+import af.apesservice.postservice.model.reqModel.PostalCodeReqDto;
+import af.apesservice.postservice.model.resModel.PostalCodeResDto;
+import af.apesservice.postservice.model.baseModel.UrbanPostalCode;
+import af.apesservice.postservice.model.baseModel.CommercialPostalCode;
+import af.apesservice.postservice.model.reqModel.CommercialPostalCodeReqDto;
 
-import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
