@@ -1,11 +1,8 @@
-package af.apesservice.postservice.utils;
+package af.apesservice.postservice.mapper;
 
-import af.apesservice.postservice.model.baseModel.PostalCode;
-import af.apesservice.postservice.model.reqModel.PostalCodeReqDto;
-import af.apesservice.postservice.model.resModel.PostalCodeResDto;
-import af.apesservice.postservice.model.baseModel.UrbanPostalCode;
-import af.apesservice.postservice.model.baseModel.CommercialPostalCode;
-import af.apesservice.postservice.model.reqModel.CommercialPostalCodeReqDto;
+import af.apesservice.postservice.model.entity.PostalCode;
+import af.apesservice.postservice.model.dto.request.PostalCodeReqDto;
+import af.apesservice.postservice.model.dto.response.PostalCodeResDto;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
@@ -21,9 +18,8 @@ public interface PostalCodeMapper {
 
     // Map from request DTO to UrbanPostalCode entity
     // Remove the zoneType mapping as it's now handled in the entity class
-    UrbanPostalCode toEntity(PostalCodeReqDto postalCodeReqDto);
+    PostalCode toEntity(PostalCodeReqDto postalCodeReqDto);
     
     // Map from request DTO to CommercialPostalCode entity
     // Remove the zoneType mapping as it's now handled in the entity class
-    CommercialPostalCode toEntity(CommercialPostalCodeReqDto commercialPostalCodeReqDto);
 }

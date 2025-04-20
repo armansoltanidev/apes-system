@@ -1,4 +1,4 @@
-package af.apesservice.postservice.model.baseModel;
+package af.apesservice.postservice.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

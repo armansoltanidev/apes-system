@@ -4,16 +4,19 @@ import af.apesservice.postservice.utils.ApiResponse;
 import af.apesservice.postservice.utils.ResponseUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-@ControllerAdvice
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -61,9 +64,29 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler(CityIdNotFoundExeption.class)
-    public ResponseEntity<ApiResponse<Object>> handleCityIdNotFoundException(CityIdNotFoundExeption ex) {
-        ApiResponse<Object> errorResponse = ResponseUtil.error(ex.getMessage(), HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+//    @ExceptionHandler(CityIdNotFoundExeption.class)
+//    public ResponseEntity<ApiResponse<Object>> handleCityIdNotFoundException(CityIdNotFoundExeption ex) {
+//        ApiResponse<Object> errorResponse = ResponseUtil.error(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+//        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+//    }
+
+    @ExceptionHandler(jakarta.validation.ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolationException(jakarta.validation.ConstraintViolationException ex) {
+        List<String> errors = ex.getConstraintViolations()
+                .stream()
+                .map(violation -> {
+                    String propertyPath = violation.getPropertyPath().toString();
+                    String message = violation.getMessage();
+                    return propertyPath + ": " + message;
+                })
+                .collect(Collectors.toList());
+
+        ApiResponse<Object> apiResponse = new ApiResponse<>(
+                "error",
+                "Validation failed: " + String.join(", ", errors),
+                HttpStatus.BAD_REQUEST.value()
+        );
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }

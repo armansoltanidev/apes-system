@@ -1,7 +1,8 @@
-package af.apesservice.postservice.model.resModel;
+package af.apesservice.postservice.model.dto.response;
 
 
 import af.apesservice.postservice.enums.VerifiedStatus;
+import af.apesservice.postservice.enums.ZoneType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class PostalCodeResDto {
     private Integer unitNumber;
     private String buildingName;
     private String additionalInformation;
+    private ZoneType zoneType;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private VerifiedStatus verifiedStatus;

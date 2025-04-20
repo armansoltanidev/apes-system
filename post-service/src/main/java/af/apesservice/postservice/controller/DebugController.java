@@ -1,8 +1,8 @@
 package af.apesservice.postservice.controller;
 
-import af.apesservice.postservice.model.reqModel.PostalCodeReqDto;
-import af.apesservice.postservice.model.baseModel.UrbanPostalCode;
-import af.apesservice.postservice.utils.PostalCodeMapper;
+import af.apesservice.postservice.model.entity.PostalCode;
+import af.apesservice.postservice.model.dto.request.PostalCodeReqDto;
+import af.apesservice.postservice.mapper.PostalCodeMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,7 @@ public class DebugController {
         result.put("receivedDto", reqDto);
         
         // Show what would be mapped
-        UrbanPostalCode entity = postalCodeMapper.toEntity(reqDto);
+        PostalCode entity = postalCodeMapper.toEntity(reqDto);
         result.put("mappedEntity", entity);
         
         return result;

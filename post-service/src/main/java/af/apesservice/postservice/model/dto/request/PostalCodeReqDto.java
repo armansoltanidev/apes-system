@@ -1,11 +1,9 @@
-package af.apesservice.postservice.model.reqModel;
+package af.apesservice.postservice.model.dto.request;
 
 import af.apesservice.postservice.enums.PostalCodeStatus;
 import af.apesservice.postservice.enums.VerifiedStatus;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import af.apesservice.postservice.enums.ZoneType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,16 +20,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostalCodeReqDto {
 
-
-    @NotNull(message = "postal code is required")
     private String postalCode;
-
-
 
     private String description;
 
-
-    @NotNull
     @NotBlank
     @Size(max = 100, message = "Avenue name cannot exceed 100 characters")
     private String avenue;
@@ -56,25 +48,23 @@ public class PostalCodeReqDto {
     private String buildingName;
     private String additionalInformation;
 
-
-
     @NotNull
-    @Enumerated(EnumType.STRING)
     private PostalCodeStatus status = PostalCodeStatus.ACTIVE;
 
-
-    @NotNull
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     private VerifiedStatus verifiedStatus = VerifiedStatus.UNVERIFIED;
-
 
     @NotNull
     private Long cityId;
 
+    private String cityName;
+
+    @NotNull(message = "Zone type is required")
+    private ZoneType zoneType;
 
     @NotNull
     @NotBlank(message = "Created by can not be null")

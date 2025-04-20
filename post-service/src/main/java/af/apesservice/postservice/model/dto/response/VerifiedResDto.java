@@ -1,9 +1,8 @@
-package af.apesservice.postservice.model.resModel;
+package af.apesservice.postservice.model.dto.response;
 
 import java.time.LocalDateTime;
 
 import af.apesservice.postservice.enums.VerifiedStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

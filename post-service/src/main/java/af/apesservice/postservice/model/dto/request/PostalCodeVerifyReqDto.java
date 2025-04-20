@@ -1,4 +1,4 @@
-package af.apesservice.postservice.model.reqModel;
+package af.apesservice.postservice.model.dto.request;
 
 
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostalCodeVerifyRequest {
+public class PostalCodeVerifyReqDto {
     private String postalCode;
 
 }
